@@ -21,10 +21,6 @@ for iter = 1:num_iters
     s = (h - y)' * X;        % calculate the summation
     theta -= (alpha / m * s)';  % update theta
 
-
-
-
-
     % ============================================================
 
     % Save the cost J in every iteration
