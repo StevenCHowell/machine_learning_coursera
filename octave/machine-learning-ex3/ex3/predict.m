@@ -32,7 +32,7 @@ a2 = [ones(m, 1) sigmoid(z2)'];
 z3 = Theta2 * a2';
 a3 = sigmoid(z3);
 
-% compute the predicions
+% compute the predictions
 [max_vals, p(:)] = max(a3);
 % =========================================================================
 
