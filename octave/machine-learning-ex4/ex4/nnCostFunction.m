@@ -26,7 +26,7 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
 m = size(X, 1);
 
 % You need to return the following variables correctly
-J = 0;
+% J = 0;
 Theta1_grad = zeros(size(Theta1));
 Theta2_grad = zeros(size(Theta2));
 
@@ -69,7 +69,7 @@ J = s1 / m; %+ lambda * theta(2:end)' * theta(2:end) / (2 * m);
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 
-s2 = sum(sum(Theta1 .^ 2)) + sum(sum(Theta2 .^ 2));
+s2 = sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2));
 J = J + s2 * lambda / (2 * m);
 
 % Part 3: Implement the backpropagation algorithm to compute the gradients
