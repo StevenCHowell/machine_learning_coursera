@@ -75,7 +75,7 @@ J = J + s2 * lambda / (2 * m);
 % Part 3: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
 %         the cost function with respect to Theta1 and Theta2 in Theta1_grad and
-%         Theta2_grad, respectively. After implementing Part 2, you can check
+%         Theta2_grad, respectively. After implementing Part 3, you can check
 %         that your implementation is correct by running checkNNGradients
 %
 %         Note: The vector y passed into the function is a vector of labels
@@ -86,6 +86,21 @@ J = J + s2 * lambda / (2 * m);
 %         Hint: We recommend implementing backpropagation using a for-loop
 %               over the training examples if you are implementing it for the
 %               first time.
+
+for t = 1:m
+    % select the training example
+    a1_t = a1(t, :);
+
+    % compute the hidden layer
+    z2_t = Theta1 * a1_t';
+    a2_t = [1 sigmoid(z2_t)'];
+
+    % compute the output layer
+    z3_t = Theta2 * a2_t';
+    a3_t = sigmoid(z3_t);
+
+    d3_t = a3_t - new_y(:, t);
+end
 
 % -------------------------------------------------------------
 
