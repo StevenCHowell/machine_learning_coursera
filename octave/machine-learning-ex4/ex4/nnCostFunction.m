@@ -50,7 +50,7 @@ a2 = [ones(m, 1) sigmoid(z2)'];
 z3 = Theta2 * a2';
 a3 = sigmoid(z3);
 
-% transform y values 
+% transform y values
 new_y = zeros(num_labels, m);
 for i = 1:num_labels
     ind = i == y;
@@ -62,8 +62,17 @@ h = a3;
 s1 = sum(sum(-new_y .* log(h) - (1 - new_y) .* log(1 - h)));
 J = s1 / m; %+ lambda * theta(2:end)' * theta(2:end) / (2 * m);
 
+% Part 2: Implement regularization with the cost function and gradients.
+%
+%         Hint: You can implement this around the code for
+%               backpropagation. That is, you can compute the gradients for
+%               the regularization separately and then add them to Theta1_grad
+%               and Theta2_grad from Part 2.
 
-% Part 2: Implement the backpropagation algorithm to compute the gradients
+s2 = sum(sum(Theta1 .^ 2)) + sum(sum(Theta2 .^ 2));
+J = J + s2 * lambda / (2 * m);
+
+% Part 3: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
 %         the cost function with respect to Theta1 and Theta2 in Theta1_grad and
 %         Theta2_grad, respectively. After implementing Part 2, you can check
@@ -77,34 +86,6 @@ J = s1 / m; %+ lambda * theta(2:end)' * theta(2:end) / (2 * m);
 %         Hint: We recommend implementing backpropagation using a for-loop
 %               over the training examples if you are implementing it for the
 %               first time.
-
-
-
-% Part 3: Implement regularization with the cost function and gradients.
-%
-%         Hint: You can implement this around the code for
-%               backpropagation. That is, you can compute the gradients for
-%               the regularization separately and then add them to Theta1_grad
-%               and Theta2_grad from Part 2.
-%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 % -------------------------------------------------------------
 
