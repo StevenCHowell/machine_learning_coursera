@@ -87,6 +87,8 @@ J = J + s2 * lambda / (2 * m);
 %               over the training examples if you are implementing it for the
 %               first time.
 
+grad1 = 0;
+grad2 = 0;
 for t = 1:m
     % select the training example
     a1_t = a1(t, :);
@@ -99,8 +101,25 @@ for t = 1:m
     z3_t = Theta2 * a2_t';
     a3_t = sigmoid(z3_t);
 
+    % calculate the derivative of output layer
     d3_t = a3_t - new_y(:, t);
+
+    % calculate the derivative of hidden layer
+    d2_t = (Theta2' * d3_t)(2:end) .* sigmoidGradient(z2_t);
+
+    % accumulate the derivatives
+    grad1 = grad1 + d2_t * a1_t;
+    grad2 = grad2 + d3_t * a2_t;
+
 end
+
+reg1 = lambda * Theta1 / m;
+reg1(:, 1) = 0;
+Theta1_grad = grad1 / m + reg1;
+
+reg2 = lambda * Theta2 / m;
+reg2(:, 1) = 0;
+Theta2_grad = grad2 / m + reg2;
 
 % -------------------------------------------------------------
 
