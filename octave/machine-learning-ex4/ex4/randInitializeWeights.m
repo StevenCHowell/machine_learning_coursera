@@ -18,8 +18,9 @@ function W = randInitializeWeights(L_in, L_out)
 %
 % Note: The first column of W corresponds to the parameters for the bias unit
 
-epsilon_init = 0.12  % close to: e_init = sqrt(6) / sqrt(L_in + L_out)
-W = rand(L_out, 1 + L_in) * 2 * epsilon_init - epsilon_init
+epsilon_init = 0.12;  
+% close to: e_init = sqrt(6) / sqrt(L_in + L_out) % = 0.11882
+W = rand(L_out, 1 + L_in) * 2 * epsilon_init - epsilon_init;
 
 % =========================================================================
 
